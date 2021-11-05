@@ -1,0 +1,26 @@
+nav {
+  display: flex;
+  justify-content: center;
+  background-color: #4f3a50;
+}
+nav > ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+}
+nav > ul > li > a {
+  height: 50px;
+  width: 100%;
+  padding: 0 10px;
+  text-decoration: none;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+nav > ul > li > a:hover {
+  color: #d3e4cd;
+}
+
+/*# sourceMappingURL=nav.css.map */

@@ -1,0 +1,65 @@
+.card-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin: 50px;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+}
+.card-container .card-col {
+  padding: 50px 30px;
+}
+.card-container .card-col .card-top img {
+  width: 300px;
+  height: 250px;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.card-container .card-col .card {
+  border-radius: 10px;
+  background-color: #4f3a50;
+  width: 300px;
+  color: #ffffff;
+  display: block;
+  transition: all 0.3s ease;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+}
+.card-container .card-col .card:hover {
+  transform: scale(1);
+}
+.card-container .card-col .card:hover .overlay {
+  height: 100%;
+}
+.card-container .card-col .card * {
+  pointer-events: none;
+}
+.card-container .card-col .overlay {
+  position: absolute;
+  height: 0;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  font-size: 30px;
+  overflow: hidden;
+  background-color: #4f3a50;
+  opacity: 0.55;
+  transition: all 0.3s ease;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card-container .card-col .card-content {
+  padding: 10px 0 3px 0;
+  text-align: center;
+  font-size: 20px;
+}
+.card-container .card-col .card-bottom {
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+/*# sourceMappingURL=index.css.map */

@@ -1,0 +1,15 @@
+$black: #272427;
+$white: #ffffff;
+$beige: #fef5ed;
+$light: #d3e4cd;
+$medium: #adc2a9;
+$dark: #7e887e;
+$background: rgb(79, 58, 80);
+
+$radius: 10px;
+
+@mixin flex-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
