@@ -25,14 +25,19 @@ function init() {
     };
 
     const addToCart = e => {
-
+        let id = e.target.getAttribute('data-id');
+        card.add(id);
     }
 
-    const loadItems = () => {
+    const loadItems = (items) => {
         dom.cardContainer.innerHTML = (renderEngine.renderItems(templates.card, DATA.products));
+        const cards = document.querySelectorAll('.card');
+        for (let card of cards) {
+            card.addEventListener('click', addToCart);
+        }
     };
 
-    loadItems();
+    loadItems(DATA.products);
 }
 
 document.addEventListener('DOMContentLoaded', init);

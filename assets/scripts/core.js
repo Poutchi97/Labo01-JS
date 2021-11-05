@@ -18,7 +18,8 @@ class RenderEngine {
     };
 
     /**
-     *  return une map (tableau) du tableau menuItems
+     * Return a map (table) from table menuItems
+     *  
      *  du résultat de render
      *  map(callback)
      *  .join('') pour pouvoir avoir les deux objets de menuItems?
@@ -29,4 +30,39 @@ class RenderEngine {
     };
 }
 
+class Card {
+    get = () => {
+        return JSON.parse(localStorage.getItem('CARD') || '[]');
+    };
+
+    save = () => {
+        localStorage.setItem('CARD', JSON.stringify(this.card));
+    }
+
+    add = (id) => {
+        // Return true or false in the var line 
+        let line = this.card.find(item => item.product.id == id);
+        if (!line) {
+            this.card.push({ product: DATA.products.find(prod => prod.id == id), quantity: 1 });
+        }
+        else {
+            line.quantity++;
+        }
+
+        this.save();
+    }
+
+    // publishChanges() {
+    //     for (let sub of this.add.subscribtions) {
+    //         sub();
+    //     }
+    // }
+
+    // subscribtions = [];
+
+
+    card = this.get();
+}
+
+const card = new Card();
 const renderEngine = new RenderEngine();
