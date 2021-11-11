@@ -1,0 +1,25 @@
+.categories-container {
+  margin-left: 65px;
+  margin-top: 50px;
+
+  select {
+    width: 150px;
+    height: 30px;
+    border-radius: 5px;
+  }
+}
+table {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  thead tr th {
+    padding: 0 15px;
+  }
+
+  tbody tr td {
+    padding: 0 35px;
+  }
+}

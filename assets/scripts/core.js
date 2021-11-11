@@ -1,68 +1,82 @@
 class RenderEngine {
-    /**
-     * Render prend un template et un model
-     * récupère les clés de l'objet (model)
-     * remplace toutes lesRegExp key par le model[key]
-     * return le template avec les {key} qui ont pris les données de l'objet model
-     * grâce aux clés récupérées avec Objet.keys(model)
-     * 
-     * Object.keys(model) => récupère les clés d'un objet
-     */
 
     render = (template, model) => {
         if (!model) return template;
         for (let key of Object.keys(model)) {
-            template = template.replaceAll(new RegExp(`{ *${key} *}`, 'g'), model[key])
+            template = template.replaceAll(new RegExp(`{ *${key} *}`, 'g'), model[key]);
         }
         return template;
     };
 
-    /**
-     * Return a map (table) from table menuItems
-     *  
-     *  du résultat de render
-     *  map(callback)
-     *  .join('') pour pouvoir avoir les deux objets de menuItems?
-     */
-
     renderItems = (template, items) => {
-        return items.map(item => this.render(template, item)).join('');
+        return items.map(
+            item => this.render(template, item)
+        ).join('');
     };
 }
 
-class Card {
+class Cart {
+
+    constructor() {
+        this.subscribtions = [];
+        this.cart = this.get();
+    }
+
     get = () => {
-        return JSON.parse(localStorage.getItem('CARD') || '[]');
+        return JSON.parse(localStorage.getItem('CART') || '[]');
     };
 
     save = () => {
-        localStorage.setItem('CARD', JSON.stringify(this.card));
+        localStorage.setItem('CART', JSON.stringify(this.cart))
     }
 
     add = (id) => {
-        // Return true or false in the var line 
-        let line = this.card.find(item => item.product.id == id);
+        let line = this.cart.find(item => item.product.id == id);
         if (!line) {
-            this.card.push({ product: DATA.products.find(prod => prod.id == id), quantity: 1 });
+            this.cart.push({ product: DATA.products.find(p => p.id == id), quantity: 1 });
         }
         else {
             line.quantity++;
         }
-
         this.save();
+        this.publishChanges();
     }
 
-    // publishChanges() {
-    //     for (let sub of this.add.subscribtions) {
-    //         sub();
-    //     }
-    // }
+    remove = (id) => {
+        let line = this.cart.find(item => item.product.id == id);
+        if (!line) {
+            return;
+        }
+        line.quantity--;
+        if (!line.quantity) {
+            this.cart.splice(this.cart.indexOf(line), 1);
+        }
+        this.save();
+        this.publishChanges();
+    }
 
-    // subscribtions = [];
+    count = () => {
+        return this.cart.reduce((reducer, item) => {
+            return reducer + item.quantity;
+        }, 0);
+    }
 
+    total = () => {
+        return this.cart.reduce((reducer, item) => {
+            return reducer + (item.quantity * item.product.price);
+        }, 0);
+    }
 
-    card = this.get();
+    onChanged(cb) {
+        this.subscribtions.push(cb);
+    }
+
+    publishChanges() {
+        for (let sub of this.subscribtions) {
+            sub();
+        }
+    }
 }
 
-const card = new Card();
+const cart = new Cart();
 const renderEngine = new RenderEngine();

@@ -30,6 +30,30 @@ footer {
   justify-content: center;
 }
 
+.categories-container {
+  margin-left: 65px;
+  margin-top: 50px;
+}
+.categories-container select {
+  width: 150px;
+  height: 30px;
+  border-radius: 5px;
+}
+
+table {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+table thead tr th {
+  padding: 0 15px;
+}
+table tbody tr td {
+  padding: 0 35px;
+}
+
 * {
   box-sizing: border-box;
 }

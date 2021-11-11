@@ -1,5 +1,5 @@
 const DATA = {
-    categorie: [
+    categories: [
         'recipe',
         'powder'
     ],

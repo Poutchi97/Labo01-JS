@@ -61,5 +61,14 @@
   display: flex;
   justify-content: space-evenly;
 }
+.card-container .categories-container {
+  margin-left: 65px;
+  margin-top: 50px;
+}
+.card-container .categories-container select {
+  width: 150px;
+  height: 30px;
+  border-radius: 5px;
+}
 
 /*# sourceMappingURL=index.css.map */
